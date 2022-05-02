@@ -1,13 +1,13 @@
 <template>
     <div
-        class="absolute inset-0 z-20 flex items-center justify-center bg-white/80 dark:bg-black/80 px-2"
+        class="absolute inset-0 z-20 flex items-center justify-center bg-white/80 px-2"
         @click.self.stop="handleClose"
     >
         <div
-            class="relative w-full max-w-xs rounded-md border border-sky-500 bg-white p-4 shadow-md dark:bg-black md:max-w-lg overflow-hidden"
+            class="relative w-full max-w-xs overflow-hidden rounded-md border border-sky-500 bg-slate-50 p-4 shadow-md md:max-w-lg"
         >
             <x-icon
-                class="absolute top-4 right-2 inline-block h-6 w-6 hover:cursor-pointer text-inherit hover:text-black/40 dark:hover:text-white/40"
+                class="absolute top-4 right-2 inline-block h-6 w-6 text-inherit hover:cursor-pointer hover:text-black/40"
                 @click.self.stop="handleClose"
                 v-if="showXIcon"
             />

@@ -11,34 +11,28 @@
             </li>
         </ul>
     </header>
-    <OverlayModal v-if="isSettingModalOpened" @close="closeSettingModal">
-        <div class="">
-            <input
-                type="number"
-                :value="config.length"
-                @change="handleConfigLengthChange"
-                min="1"
-                max="10"
-            />
-        </div>
-    </OverlayModal>
+    <Transition
+        enter-active-class="duration-300 ease-out"
+        enter-from-class="opacity-0"
+        enter-to-class="opacity-100"
+        leave-active-class="duration-300 ease-in"
+        leave-from-class="opacity-100"
+        leave-to-class="opacity-0"
+    >
+        <OverlayModal v-if="isSettingModalOpened" @close="closeSettingModal">
+            <SettingPanel></SettingPanel>
+        </OverlayModal>
+    </Transition>
 </template>
 <script setup lang="ts">
 import { CogIcon } from '@heroicons/vue/solid';
 import OverlayModal from './overlay-modal.vue';
 import { ref } from 'vue';
-import { useGameConfig } from '../store/game-config';
-import { useGame } from '../store/game-instance';
+import SettingPanel from './setting-panel.vue';
+
 const isSettingModalOpened = ref(false);
-const config = useGameConfig();
-const game = useGame();
+
 function closeSettingModal() {
     isSettingModalOpened.value = false;
-}
-
-function handleConfigLengthChange(event: Event) {
-    const target = event.target as HTMLInputElement;
-    config.setLength(parseInt(target.value));
-    game.newGame(config);
 }
 </script>
