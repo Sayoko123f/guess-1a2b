@@ -1,10 +1,10 @@
 <template>
     <div
-        class="absolute inset-0 z-20 flex items-center justify-center bg-white/80 px-2"
+        class="absolute inset-0 z-20 flex items-center justify-center bg-black/40 px-2"
         @click.self.stop="handleClose"
     >
         <div
-            class="relative w-full max-w-xs overflow-hidden rounded-md border border-sky-500 bg-slate-50 p-4 shadow-md md:max-w-lg"
+            class="relative w-full max-w-xs overflow-hidden rounded-md border border-gray-800 bg-slate-50 p-4 shadow-md md:max-w-lg"
         >
             <x-icon
                 class="absolute top-4 right-2 inline-block h-6 w-6 text-inherit hover:cursor-pointer hover:text-black/40"
