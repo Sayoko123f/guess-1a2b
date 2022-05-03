@@ -3,7 +3,7 @@
         <p class="font-bold">
             遊戲設定<span class="opacity-60">(修改後將開始新的一局)</span>
         </p>
-        <div class="">
+        <div class="pt-2">
             <div class="border-t">
                 <p class="pt-4">答案是否允許使用重複的數字</p>
                 <div class="ml-8 pb-4">
@@ -46,15 +46,10 @@
             </div>
         </div>
         <div class="border-t pt-4">
-            <button
-                class="rounded-md bg-orange-200/60 px-2 py-1 ring-orange-300/60 hover:shadow-inner hover:ring"
-                @click="() => game.newGame(config)"
-            >
-                重新開始
-            </button>
+            <RestartBtn />
         </div>
         <div class="py-2">
-            <span class="group rounded-md px-2 py-1 bg-black text-white"
+            <span class="group rounded-md bg-black px-2 py-1 text-white"
                 >這裡偷看答案
                 <mark class="invisible group-hover:visible">{{
                     game.game.ans
@@ -66,6 +61,7 @@
 <script setup lang="ts">
 import { useGameConfig } from '../store/game-config';
 import { useGame } from '../store/game-instance';
+import RestartBtn from './restart-btn.vue';
 const config = useGameConfig();
 const game = useGame();
 

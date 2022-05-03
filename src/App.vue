@@ -46,6 +46,35 @@
         <div class="my-4">
             <BaseButton @click="handleGuessButtonClick"> 猜！ </BaseButton>
         </div>
+        <!-- Win Result View -->
+        <Transition
+            enter-active-class="duration-300 ease-out"
+            enter-from-class="opacity-0"
+            enter-to-class="opacity-100"
+            leave-active-class="duration-300 ease-in"
+            leave-from-class="opacity-100"
+            leave-to-class="opacity-0"
+        >
+            <OverlayModal
+                v-if="isShowWinResult"
+                :show-x-icon="false"
+                @close="() => (isShowWinResult = false)"
+            >
+                <div class="text-center">
+                    <p class="text-xl">猜對了\(￣︶￣*\))</p>
+                    <p>
+                        您一共猜了
+                        <span class="text-xl font-bold text-teal-700">{{
+                            game.tips.length
+                        }}</span>
+                        次
+                    </p>
+                    <div class="pt-4">
+                        <RestartBtn @click="handleRestartButtonClick" />
+                    </div>
+                </div>
+            </OverlayModal>
+        </Transition>
     </main>
 </template>
 
@@ -56,11 +85,15 @@ import MyHeader from './components/my-header.vue';
 import { BackspaceIcon, TrashIcon } from '@heroicons/vue/solid';
 import { useGame } from './store/game-instance';
 import { useGameConfig } from './store/game-config';
+import OverlayModal from './components/overlay-modal.vue';
+import RestartBtn from './components/restart-btn.vue';
 
 const game = useGame();
 const config = useGameConfig();
 const nums = [7, 8, 9, 4, 5, 6, 1, 2, 3, 0];
 const tipDiv = ref<HTMLDivElement>();
+
+const isShowWinResult = ref(false);
 function handleNumButtonClick(event: Event) {
     if (game.input.length === config.length) {
         return;
@@ -94,7 +127,10 @@ function handleGuessButtonClick() {
 }
 
 function win() {
-    window.alert('win');
-    game.setInput('');
+    isShowWinResult.value = true;
+}
+
+function handleRestartButtonClick() {
+    isShowWinResult.value = false;
 }
 </script>
